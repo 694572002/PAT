@@ -1,0 +1,25 @@
+123456
+
+遇到这种错误
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'git@github.com:694572002/PAT.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+或者出现以下错误
+$ git push -u origin master
+ssh: Could not resolve hostname github: Name or service not known
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+
+请删除远程仓库，以及本地仓库，再重新创建一次，就可以push了。
+git remote -v 查看远程仓库
+git remote remove origin 删除远程仓库
+git remote add origin git@github.com:694572002/pat.git 本地关联远程仓库
+git push -u origin master 把本地的全部文件推送到远程仓库。
