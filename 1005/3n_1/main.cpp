@@ -1,65 +1,40 @@
-
-
 #include <iostream>
+#include<algorithm>
+//参考了以下博客的思想 
+//https://blog.csdn.net/qq_36122764/article/details/82026053
+//1从第一个数开始，首先判断该值是否为1，将不是1的值进行卡拉兹运算，
+//每次进行卡拉兹运算得到的结果与所有待验证的数进行比较，
+//如果发现有值相同的待验证数，则说明该待验证数不是关键数，将其赋值为1
+//2将所有数检测完毕之后，数组中不为1的数即为关键数。 
 using namespace std;
-int main(void)
+int main()
 {
-	int n,a =0,b =0,k=0,j=0,i=0,num[100]={0},key[100]={0},max[100]={0};
-	//scanf("%d",&n);
+	int i=0,n,num[100];
+	int j= 0; 
 	cin >> n;
-	while(k<n)cin >> key[k++];
-		while(n!=1)
-		{
-		  if(n%2==0)
-		  {
-			n = n >> 1;
-			num[i]=n;
-			i++;
-		  }
-		  else
-		  {
-			n = (3*n+1)>>1;
-			num[i]=n;
-			i++; 
-		  }
-		}
-	for(j=0;j<i-1;j++)
-    {
-	//	printf("%d ",num[j]);
-	    cout << num[j] << " ";
+	for(i=0;i<n;i++)
+	{
+		cin >> num[i];
 	}
-	cout << endl;
-
-    for(j= 0;j<i-1;j++)
-    {
-  	    for(a= 0;a<k;a++)
-    	{
-	    	if(key[a] == num[j])max[b++]=a;
-	    }
-    }   
-    int c=0;b=0;
-   	while(c<k)
-    {	
-
-		if(c != max[b]) 
+	for(i=0;i<n;i++)
+	{
+		int k = num[i];
+		while(k!=1)  //如果待验证的数不为1 
 		{
-			cout << key[c] << " ";
-		//	c++;
+			if(k%2==0)k=k/2;
+			else k = (3*k +1)/2;
+			
+			for( j = 0;j < n;j++)  //每次运算结果都与待验证的数进行比较， 
+			{
+				if(num[j]==k)num[j]=1; //运算结果与待验证的数相等，则把待验证的数设为1 
+			}	
 		}
- 	    if(c == max[b])
-		{
-			b++;	
-    	}
-		c++;
-    }
-   /* b = 0;
-   	for(int c=0;c<b;c++)
-    {	 
-        if(key[c] !=max[b++])
-		cout << key[c] << " ";
-		
-    }*/
-	return 0;
+	}
+	sort(num,num+j,greater<int>()); //数组进行升序排列 
 
+	for(int z= 0;z<n;z++)
+	{
+		if(num[z]!=1 && num[z+1]!=1)cout << num[z] <<' ';
+		if(num[z]!=1 && num[z+1]==1)cout << num[z];
+	}
 }
-
