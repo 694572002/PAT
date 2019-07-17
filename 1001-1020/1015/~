@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+struct student
+{
+	int idnum;
+	int moral;
+	int talent;
+}stu[4];
+int main()
+{
+	int N,L,H,a=0,b=0,c=0,d=0;
+	student stu1;
+	cin >> N >>L >>H;
+	for(int i=0;i<N;i++)
+	{
+		scanf("%d,%d,%d",&stu1.idnum,&stu1.moral,&stu1.talent);
+		if(stu1.moral > L && stu1.talent > L)
+		{
+			if(stu1.moral>H && stu1.talent>H) //第一类 
+			{
+				stu[a].idnum=stu1.idnum;
+				stu[a].moral=stu1.moral;
+				stu[a++].idnum=stu1.talent;
+			}
+			if(stu1.moral>H && stu1.talent<H) //第二类 
+			{
+				stu[b].idnum=stu1.idnum;
+				stu[b].moral=stu1.moral;
+				stu[b++].idnum=stu1.talent;
+			}
+			if(stu1.moral<H && stu1.talent<H && stu1.moral>stu1.talent) //第三类 
+			{
+				stu[c].idnum=stu1.idnum;
+				stu[c].moral=stu1.moral;
+				stu[c++].idnum=stu1.talent;
+			}
+			else //第四类 
+			{
+				stu[d].idnum=stu1.idnum;
+				stu[d].moral=stu1.moral;
+				stu[d++].idnum=stu1.talent;
+			}	
+			
+		}
+		cout << a+b+c+d <<endl; 
+
+		
+	}
+	
+	return 0;
+}
